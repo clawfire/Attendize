@@ -30,7 +30,7 @@ class StripeSCA
         $account_payment_gateway = $ticket_order['account_payment_gateway']->config;
         $fees = $ticket_order['total_booking_fee'];
         
-        if($account_payment_gateway['transfer_data_destination_id']){
+        if (array_key_exists('transfer_data_destination_id',$account_payment_gateway) || !empty($account_payment_gateway['transfer_data_destination_id'])) {
             $this->transaction_data = [
                 'amount' => $order_total,
                 'currency' => $event->currency->code,
